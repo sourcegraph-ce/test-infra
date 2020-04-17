@@ -282,7 +282,7 @@ func newFakeIssueService(org, repo string, labels []string, issueCount int) *fak
 	repoIssues := map[int]*github.Issue{}
 	for i := 1; i <= issueCount; i++ {
 		iCopy := i
-		text := fmt.Sprintf("%d", i)
+		text := strconv.Itoa(i)
 		issue := &github.Issue{
 			Title:     &text,
 			Body:      &text,

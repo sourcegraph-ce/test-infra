@@ -1364,7 +1364,7 @@ func TestTakeAction(t *testing.T) {
 				if err := lg.CheckoutNewBranch("o", "r", fmt.Sprintf("pr-%d", i)); err != nil {
 					t.Fatalf("Error checking out new branch: %v", err)
 				}
-				if err := lg.AddCommit("o", "r", map[string][]byte{fmt.Sprintf("%d", i): []byte("WOW")}); err != nil {
+				if err := lg.AddCommit("o", "r", map[string][]byte{strconv.Itoa(i): []byte("WOW")}); err != nil {
 					t.Fatalf("Error adding commit: %v", err)
 				}
 				if err := lg.Checkout("o", "r", "master"); err != nil {

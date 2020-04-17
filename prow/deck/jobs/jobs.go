@@ -224,7 +224,7 @@ func (ja *JobAgent) update() error {
 			ProwJob: j.ObjectMeta.Name,
 			BuildID: buildID,
 
-			Started:     fmt.Sprintf("%d", j.Status.StartTime.Time.Unix()),
+			Started:     strconv.Itoa(j.Status.StartTime.Time.Unix()),
 			State:       string(j.Status.State),
 			Description: j.Status.Description,
 			PodName:     j.Status.PodName,

@@ -320,7 +320,7 @@ func (c *Client) measure(method, path string, code int, start time.Time) {
 		return
 	}
 	c.metrics.RequestLatency.WithLabelValues(method, path).Observe(time.Since(start).Seconds())
-	c.metrics.Requests.WithLabelValues(method, path, fmt.Sprintf("%d", code)).Inc()
+	c.metrics.Requests.WithLabelValues(method, path, strconv.Itoa(code)).Inc()
 }
 
 // GetSkipMetrics fetches the data found in the provided path. It returns the

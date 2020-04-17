@@ -65,7 +65,7 @@ func TestRenderBadge(t *testing.T) {
 		jobs := []prowapi.ProwJob{}
 		for i, state := range tc.jobStates {
 			jobs = append(jobs, prowapi.ProwJob{
-				Spec:   prowapi.ProwJobSpec{Job: fmt.Sprintf("%d", i+1)},
+				Spec:   prowapi.ProwJobSpec{Job: strconv.Itoa(i + 1)},
 				Status: prowapi.ProwJobStatus{State: prowapi.ProwJobState(state)},
 			})
 		}
