@@ -1,5 +1,5 @@
 // Given a DOM node, attempt to select it.
-function select(node) {
+const :[fn~\w+] = (node) => {
 	var sel = window.getSelection();
 	if (sel.toString() !== "") {
 		// User is already trying to do a drag-selection, don't prevent it.
@@ -13,8 +13,8 @@ function select(node) {
 }
 
 // Rewrite timestamps to respect the current locale.
-function fix_timestamps() {
-	function replace(className, fmt) {
+const :[fn~\w+] = () => {
+	const :[fn~\w+] = (className, fmt) => {
 		var tz = moment.tz.guess();
 		var els = document.getElementsByClassName(className);
 		for (var i = 0; i < els.length; i++) {
@@ -46,7 +46,7 @@ function fix_timestamps() {
 var get_cache = {};
 
 // Download a file from GCS or elsewhere, and run "callback" with its contents.
-function get(uri, callback) {
+const :[fn~\w+] = (uri, callback) => {
 	if (get_cache[uri]) {
 		callback(get_cache[uri]);
 		return;
@@ -70,7 +70,7 @@ function get(uri, callback) {
 	req.send();
 }
 
-function expand_lines(els, data) {
+const :[fn~\w+] = (els, data) => {
 	var lines = data.split('\n');
 	var parent = els[0].parentElement;
 	for (var i = 0; i < els.length; i++) {
@@ -90,7 +90,7 @@ function expand_lines(els, data) {
 	fix_escape_codes();  // colorize new segments
 }
 
-function expand_skipped(els) {
+const :[fn~\w+] = (els) => {
 	var src = els[0].parentElement.dataset['src'];
 	get(src, function(req) {
 		if (req.status == 401) {  // unauthorized
@@ -105,7 +105,7 @@ function expand_skipped(els) {
 	document.querySelector('h2#log').innerHTML = 'Build Log';
 }
 
-function expand_all(btn) {
+const :[fn~\w+] = (btn) => {
 	var logs = document.querySelectorAll('pre[data-src]');
 	for (var i = 0; i < logs.length; i++) {
 		var skips = logs[i].querySelectorAll('span.skip');
@@ -116,7 +116,7 @@ function expand_all(btn) {
 	btn.remove();
 }
 
-function expand_element(els) {
+const :[fn~\w+] = (els) => {
 	var parent = els[0].parentElement;
 	var hidden = parent.querySelectorAll(".hidden");
 	for (var i = 0; i < hidden.length; i++) {
@@ -128,11 +128,11 @@ function expand_element(els) {
 /* given a string containing ansi formatting directives, return a new one
    with designated regions of text marked with the appropriate color directives,
    and with all unknown directives stripped */
-function ansi_to_html(orig) {
+const :[fn~\w+] = (orig) => {
 	// Given a cmd (like "32" or "0;97"), some enclosed body text, and the original string,
 	// either return the body wrapped in an element to achieve the desired result, or the
 	// original string if nothing works.
-	function annotate(cmd, body, orig) {
+	const :[fn~\w+] = (cmd, body, orig) => {
 		var code = +(cmd.replace('0;', ''));
 		if (code === 0) // reset
 			return body;
@@ -158,7 +158,7 @@ function ansi_to_html(orig) {
 	});
 }
 
-function fix_escape_codes() {
+const :[fn~\w+] = () => {
 	var logs = document.querySelectorAll('pre[data-src]');
 	for (var i = 0; i < logs.length; i++) {
 		var orig = logs[i].innerHTML;
@@ -170,7 +170,7 @@ function fix_escape_codes() {
 }
 
 /* Remove unicode sequences caused by colorized output in junit.xml */
-function remove_unicode_escape_codes() {
+const :[fn~\w+] = () => {
 	var errors = document.querySelectorAll('pre.error')
 	for (var i = 0; i < errors.length; i++) {
 		var orig = errors[i].innerHTML
@@ -181,7 +181,7 @@ function remove_unicode_escape_codes() {
 	}
 }
 
-function init() {
+const :[fn~\w+] = () => {
 	fix_timestamps();
 	fix_escape_codes();
 	remove_unicode_escape_codes();
@@ -206,7 +206,7 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 // Acknowledge a PR to suppress it. If repo is "CLEAR", clear acks instead.
-function ack(event, repo, number, latest) {
+const :[fn~\w+] = (event, repo, number, latest) => {
 	event.stopPropagation();
 	var req = new XMLHttpRequest();
 	req.open('POST', '/pr');
@@ -226,7 +226,7 @@ function ack(event, repo, number, latest) {
 }
 
 // Reset the acknowledged PRs
-function ack_clear() {
+const :[fn~\w+] = () => {
 	var req = new XMLHttpRequest();
 	req.open('POST', '/pr');
 	req.onload = function(resp) {

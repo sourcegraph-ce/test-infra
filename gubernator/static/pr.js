@@ -1,7 +1,7 @@
 const upArrow = '▲';
 const downArrow = '▼';
 
-function sortRows(rows, col, colName, dir) {
+const :[fn~\w+] = (rows, col, colName, dir) => {
   // customize sorting functions for different columns
   let extract = el => el.innerText.replace(/^\s+|\s+$/g, '');
   let fn = x => x;
@@ -38,7 +38,7 @@ function sortRows(rows, col, colName, dir) {
   });
 }
 
-function sortColumn(evt) {
+const :[fn~\w+] = (evt) => {
   const target = evt.target;
   const reverse = target.innerText[0] == upArrow;
 
