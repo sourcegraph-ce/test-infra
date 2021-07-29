@@ -2,7 +2,7 @@
 
 // Return the minimum and maximum value of arr.
 // Doesn't cause stack overflows like Math.min(...arr).
-function minMaxArray(arr) {
+const :[fn~\w+] = (arr) => {
   var min = arr[0];
   var max = arr[0];
   for (var i = 1; i < arr.length; i++) {
@@ -12,7 +12,7 @@ function minMaxArray(arr) {
   return [min, max];
 }
 
-function tsToString(ts) {
+const :[fn~\w+] = (ts) => {
   return new Date(ts * 1000).toLocaleString();
 }
 
@@ -69,19 +69,19 @@ class Builds {
   }
 }
 
-function sum(arr, keyFunc) {
+const :[fn~\w+] = (arr, keyFunc) => {
   if (arr.length === 0)
     return 0;
   return arr.map(keyFunc).reduce((a, b) => a + b);
 }
 
-function clustersSum(tests) {
+const :[fn~\w+] = (tests) => {
   return sum(tests, t => sum(t.jobs, j => j.builds.length));
 }
 
 // Return arr sorted by value according to keyFunc, which
 // should take an element of arr and return an array of values.
-function sortByKey(arr, keyFunc) {
+const :[fn~\w+] = (arr, keyFunc) => {
   var vals = arr.map((x, i) => [keyFunc(x), x]);
   vals.sort((a, b) => {
     for (var i = 0; i < a[0].length; i++) {
@@ -122,7 +122,7 @@ function *buildsWithContextForCluster(entry) {
 }
 
 // Return the number of builds that completed in the last day's worth of data.
-function getHitsInLastDay(entry) {
+const :[fn~\w+] = (entry) => {
   if (entry.dayHits) {
     return entry.dayHits;
   }
@@ -228,7 +228,7 @@ class Clusters {
     let start = builds.timespan[0];
     let width = 60 * 60 * 8;  // 8 hours
 
-    function pickBucket(ts) {
+    const :[fn~\w+] = (ts) => {
       return ((ts - start) / width) | 0;
     }
 
@@ -236,7 +236,7 @@ class Clusters {
 
     let counts = {};
 
-    function incr(key, bucket) {
+    const :[fn~\w+] = (key, bucket) => {
       if (counts[key] === undefined) {
         counts[key] = new Uint32Array(size);
       }

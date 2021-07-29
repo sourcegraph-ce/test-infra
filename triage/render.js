@@ -29,7 +29,7 @@ if (typeof Element !== 'undefined') {
 
 // Create a new DOM node of `type` with `opts` attributes and with given children.
 // If children is a string, or an array with string elements, they become text nodes.
-function createElement(type, opts, children) {
+const :[fn~\w+] = (type, opts, children) => {
   var el = document.createElement(type);
   if (opts) {
     for (let [key, value] of Object.entries(opts)) {
@@ -57,13 +57,13 @@ function createElement(type, opts, children) {
 }
 
 // Like createElement, but also appends the new node to parent's children.
-function addElement(parent, type, opts, children) {
+const :[fn~\w+] = (parent, type, opts, children) => {
   var el = createElement(type, opts, children);
   parent.appendChild(el);
   return el;
 }
 
-function spyglassURLForBuild(build, test) {
+const :[fn~\w+] = (build, test) => {
   let buildPath = builds.jobPaths[build.job] + '/' + build.number;
   var spyglassURL = 'https://prow.k8s.io/view/gcs/' + buildPath.slice(5);
   if (build.pr) {
@@ -73,13 +73,13 @@ function spyglassURLForBuild(build, test) {
 }
 
 // Turn a build object into a link with information.
-function buildToHtml(build, test, skipNumber) {
+const :[fn~\w+] = (build, test, skipNumber) => {
   let started = tsToString(build.started);
   return `<a href="${spyglassURLForBuild(build, test)}" target="_blank" rel="noopener">${skipNumber ? "" : build.number} ${started}</a>`;
 }
 
 // Turn a job and array of build numbers into a list of build links.
-function buildNumbersToHtml(job, buildNumbers, test) {
+const :[fn~\w+] = (job, buildNumbers, test) => {
   var buildCount = builds.count(job);
   var pct = buildNumbers.length / builds.count(job);
   var out = `Failed in ${Math.round(pct * 100)}% (${buildNumbers.length}/${buildCount}) of builds: <ul>`;
@@ -91,7 +91,7 @@ function buildNumbersToHtml(job, buildNumbers, test) {
 }
 
 // Append a list item containing information about a job's runs.
-function addBuildListItem(jobList, job, buildNumbers, hits, test) {
+const :[fn~\w+] = (jobList, job, buildNumbers, hits, test) => {
   var jobEl = addElement(jobList, 'li', null, [sparkLineSVG(hits), ` ${buildNumbers.length} ${job} ${rightArrow}`,
     createElement('p', {
       style: {display: 'none'},
@@ -101,7 +101,7 @@ function addBuildListItem(jobList, job, buildNumbers, hits, test) {
 }
 
 // Render a list of builds as a list of jobs with expandable build sections.
-function renderJobs(parent, clusterId) {
+const :[fn~\w+] = (parent, clusterId) => {
   if (parent.children.length > 0) {
     return;  // already done
   }
@@ -143,7 +143,7 @@ function renderJobs(parent, clusterId) {
 
 // Return an SVG path displaying the given histogram arr, with width
 // being per element and height being the total height of the graph.
-function sparkLinePath(arr, width, height) {
+const :[fn~\w+] = (arr, width, height) => {
   var max = 0;
   for (var i = 0; i < arr.length; i++) {
     if (arr[i] > max)
@@ -177,7 +177,7 @@ function sparkLinePath(arr, width, height) {
   return out;
 }
 
-function sparkLineSVG(arr) {
+const :[fn~\w+] = (arr) => {
   var width = 4;
   var height = 16;
   var path = sparkLinePath(arr, width, height);
@@ -187,12 +187,12 @@ function sparkLineSVG(arr) {
   });
 }
 
-function dayCounts(arr) {
+const :[fn~\w+] = (arr) => {
   var l = arr.length;
   return arr[l-1]+arr[l-2]+arr[l-3]+arr[l-4];
 }
 
-function renderLatest(el, keyId) {
+const :[fn~\w+] = (el, keyId) => {
   var ctxs = [];
   for (let ctx of clustered.buildsWithContextForClusterById(keyId)) {
     ctxs.push(ctx);
@@ -224,7 +224,7 @@ function renderLatest(el, keyId) {
 
 // Return a list of strings and spans made from text according to spans.
 // Spans is a list of [text segment length, span segment length, ...] repeating.
-function renderSpans(text, spans) {
+const :[fn~\w+] = (text, spans) => {
   if (!spans) {
     return [text];
   }
@@ -247,7 +247,7 @@ function renderSpans(text, spans) {
   return out;
 }
 
-function makeGitHubIssue(id, text, owner, latestBuilds) {
+const :[fn~\w+] = (id, text, owner, latestBuilds) => {
   let title = `Failure cluster [${id.slice(0, 8)}...]`;
   let body = `### Failure cluster [${id}](https://go.k8s.io/triage#{id})
 
@@ -268,14 +268,14 @@ ${text.slice(0, Math.min(text.length, 1500))}
 
 // Render a section for each cluster, including the text, a graph, and expandable sections
 // to dive into failures for each test or job.
-function renderCluster(top, cluster) {
+const :[fn~\w+] = (top, cluster) => {
   let {key, id, text, tests, spans, owner} = cluster;
 
-  function plural(count, word, suffix) {
+  const :[fn~\w+] = (count, word, suffix) => {
     return count + ' ' + word + (count == 1 ? '' : suffix);
   }
 
-  function swapArrow(el) {
+  const :[fn~\w+] = (el) => {
     el.textContent = el.textContent.replace(downArrow, rightArrow);
   }
 
@@ -395,7 +395,7 @@ function renderCluster(top, cluster) {
 }
 
 // Convert an array of integers into a histogram array of two-element arrays.
-function makeBuckets(hits, width, start, end) {
+const :[fn~\w+] = (hits, width, start, end) => {
   var cur = start;
   cur -= (cur % width);  // align to width
   var counts = new Uint32Array(Math.floor((end - cur) / width) + 1);
@@ -411,7 +411,7 @@ function makeBuckets(hits, width, start, end) {
 }
 
 // Display a line graph on `element` showing failure occurrences.
-function renderGraph(element, buildsIterator) {
+const :[fn~\w+] = (element, buildsIterator) => {
   // Defer rendering until later if the Charts API isn't available.
   if (!google.charts.loaded) {
     setTimeout(() => renderGraph(element, buildsIterator), 100);
@@ -460,7 +460,7 @@ function renderGraph(element, buildsIterator) {
 }
 
 // When someone clicks on an expandable element, render the sub content as necessary.
-function expand(target) {
+const :[fn~\w+] = (target) => {
   if (target.nodeName === "BUTTON" && target.className === "rest") {
     target.remove();
     return true;

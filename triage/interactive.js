@@ -13,7 +13,7 @@ RegExp.escape = function(text) {
 };
 
 // Load options from form inputs, put them in the URL, and return the options dict.
-function readOptions() {
+const :[fn~\w+] = () => {
   var read = id => {
     let el = document.getElementById(id);
     if (el.type === "checkbox") return el.checked;
@@ -36,7 +36,7 @@ function readOptions() {
     }
   }
 
-  function readSigs() {
+  const :[fn~\w+] = () => {
     var ret = [];
     for (let el of document.getElementById("btn-sig-group").children) {
       if (el.classList.contains('active')) {
@@ -83,7 +83,7 @@ function readOptions() {
 }
 
 // Convert querystring parameters into form inputs.
-function setOptionsFromURL() {
+const :[fn~\w+] = () => {
   // http://stackoverflow.com/a/3855394/3694
   var qs = (function(a) {
     if (a == "") return {};
@@ -106,7 +106,7 @@ function setOptionsFromURL() {
     else el.value = value;
   }
 
-  function writeSigs(sigs) {
+  const :[fn~\w+] = (sigs) => {
     for (let sig of (sigs || '').split(',')) {
       var el = document.getElementById('btn-sig-' + sig);
       if (el) {
@@ -125,7 +125,7 @@ function setOptionsFromURL() {
 }
 
 // Render up to `count` clusters, with `start` being the first for consideration.
-function renderSubset(start, count) {
+const :[fn~\w+] = (start, count) => {
   var top = document.getElementById('clusters');
   var n = 0;
   var shown = 0;
@@ -137,12 +137,12 @@ function renderSubset(start, count) {
   }
 }
 
-function setElementVisibility(id, visible) {
+const :[fn~\w+] = (id, visible) => {
   document.getElementById(id).style.display = visible ? null : 'none';
 }
 
 // Clear the page and reinitialize the renderer and filtering. Render a few failures.
-function rerender(maxCount) {
+const :[fn~\w+] = (maxCount) => {
   if (!clusteredAll) return;
 
   console.log('rerender!');
@@ -196,7 +196,7 @@ function rerender(maxCount) {
   }
 }
 
-function toggle(target) {
+const :[fn~\w+] = (target) => {
   if (target.matches('button.toggle')) {
     target.classList.toggle("active");
     // rerender after repainting the clicked button, to improve responsiveness.
@@ -211,7 +211,7 @@ function toggle(target) {
   return true;
 }
 
-function renderOnly(keyId) {
+const :[fn~\w+] = (keyId) => {
   var el = null;
   rerender(0);
 
@@ -227,7 +227,7 @@ function renderOnly(keyId) {
 // When the user scrolls down, render more clusters to provide infinite scrolling.
 // This is important to make the first page load fast.
 // Also, trigger a debounced lazy graph rendering pass.
-function scrollHandler() {
+const :[fn~\w+] = () => {
   if (!clustered) return;
   if (lastClusterRendered < clustered.length) {
     var top = document.getElementById('clusters');
@@ -243,7 +243,7 @@ function scrollHandler() {
 
 var drawGraphsTimer = null;
 
-function drawVisibleGraphs() {
+const :[fn~\w+] = () => {
   for (let el of document.querySelectorAll('div.graph')) {
     if (el.children.length > 0) {
       continue;  // already rendered
@@ -256,7 +256,7 @@ function drawVisibleGraphs() {
 }
 
 // If someone clicks on an expandable node, expand it!
-function clickHandler(evt) {
+const :[fn~\w+] = (evt) => {
   var target = evt.target;
   if (expand(target) || toggle(target)) {
     evt.preventDefault();
@@ -267,7 +267,7 @@ function clickHandler(evt) {
 
 // Download a file from GCS and invoke callback with the result.
 // extracted/modified from kubernetes/test-infra/gubernator/static/build.js
-function get(uri, callback, onprogress) {
+const :[fn~\w+] = (uri, callback, onprogress) => {
   if (uri[0] === '/') {
     // Matches /bucket/file/path -> [..., "bucket", "file/path"]
     var groups = uri.match(/([^/:]+)\/(.*)/);
@@ -286,7 +286,7 @@ function get(uri, callback, onprogress) {
   req.send();
 }
 
-function getData() {
+const :[fn~\w+] = () => {
   var clusterId = null;
   if (/^#[a-f0-9]{20}$/.test(window.location.hash)) {
     clusterId = window.location.hash.slice(1);
@@ -346,7 +346,7 @@ function getData() {
 }
 
 // One-time initialization of the whole page.
-function load() {
+const :[fn~\w+] = () => {
   setOptionsFromURL();
 
   getData();
